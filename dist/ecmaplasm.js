@@ -71,6 +71,7 @@
 class Tile {
   constructor(map, positionX, positionY, options={}) {
     this.options = options;
+    this.content = this.options.content;
     this.map = map;
     this.position = {
       x: positionX,
@@ -78,8 +79,12 @@ class Tile {
     }
   }
 
-  toString() {
+  getTextAlias() {
     return ` `;
+  }
+
+  toString() {
+    return this.content ? this.content.toString() : this.getTextAlias();
   }
 
   adjacentTiles() {
@@ -141,6 +146,8 @@ class Game {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WallTile__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(6);
+
 
 
 
@@ -171,6 +178,11 @@ class GameMap {
 
     if (char === `|` || char === `-`) {
       tile = new __WEBPACK_IMPORTED_MODULE_1__WallTile__["a" /* default */](this, x, y);
+    } else if (char === `i`) {
+      const player = new __WEBPACK_IMPORTED_MODULE_2__Player__["a" /* default */](this, x, y);
+      tile = new __WEBPACK_IMPORTED_MODULE_0__Tile__["a" /* default */](this, x, y, {
+        content: player
+      });
     } else {
       tile = new __WEBPACK_IMPORTED_MODULE_0__Tile__["a" /* default */](this, x, y);
     }
@@ -214,7 +226,7 @@ const isWallTile = (tile) =>
   tile.constructor.name === "WallTile";
 
 class WallTile extends __WEBPACK_IMPORTED_MODULE_0__Tile__["a" /* default */] {
-	toString() {
+	getTextAlias() {
 		const {north, east, south, west} = this.adjacentTiles();
 
 		if (this.borderedBy([north, east, south, west])) {
@@ -254,7 +266,25 @@ class WallTile extends __WEBPACK_IMPORTED_MODULE_0__Tile__["a" /* default */] {
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = "-------\n|     |\n|     |\n|     |\n|     |\n--- ---\n  | |\n  | |\n  | |\n  | |\n -- --\n |   |\n -----\n"
+module.exports = "-------\n|     |\n|     |\n|     |\n|     |\n--- ---\n  | |\n  | |\n  | |\n  | |\n -- --\n | i |\n -----\n"
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Player {
+  getTextAlias() {
+    return `i`;
+  }
+
+  toString() {
+    return this.getTextAlias();
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Player);
+
 
 /***/ })
 /******/ ]);
