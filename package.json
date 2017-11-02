@@ -1,0 +1,29 @@
+{
+  "name": "ecmaplasm",
+  "version": "1.0.0",
+  "description": "A game that teaches you javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schneiderik/ecmaplasm.git"
+  },
+  "author": "Erik Schneider",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/schneiderik/ecmaplasm/issues"
+  },
+  "homepage": "https://github.com/schneiderik/ecmaplasm#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "raw-loader": "^0.5.1",
+    "webpack": "^3.8.1"
+  }
+}
